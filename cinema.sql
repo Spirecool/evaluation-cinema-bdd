@@ -12,6 +12,7 @@ CREATE DATABASE  cinema_booking ;
 USE cinema_booking ;
 
 
+
 ------------------------
 -- Creation des tables--
 ------------------------
@@ -87,7 +88,7 @@ CREATE TABLE prices_list
 
 CREATE TABLE clients
 (
-    id CHAR(36) PRIMARY KEY NOT NULL,
+    id INT(18) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     user_login VARCHAR(20),
     email VARCHAR(80),
     password VARCHAR(60),
@@ -105,13 +106,13 @@ CREATE TABLE payments
     type_payment VARCHAR(30) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
---CREATE TABLE bookings
+CREATE TABLE bookings
 (
     id CHAR(36) PRIMARY KEY NOT NULL,
     date_booking DATETIME NOT NULL,
     id_payment INT(24) NOT NULL,
     id_projection INT(10) NOT NULL,
-    id_client CHAR(36) NOT NULL,
+    id_client INT(18) NOT NULL,
     id_movie_room INT(10) NOT NULL,
     FOREIGN KEY(id_payment) REFERENCES payments(id),
     FOREIGN KEY(id_projection) REFERENCES projections(id),
@@ -126,7 +127,7 @@ CREATE TABLE bookings
     date_booking DATETIME NOT NULL,
     id_payment INT(24) NOT NULL,
     id_projection INT(10) NOT NULL,
-    id_client CHAR(36) NOT NULL,
+    id_client INT(18) NOT NULL,
     id_movie_room INT(10) NOT NULL,
     id_movie INT(12) NOT NULL,
     id_cinema_complex INT(10) NOT NULL,

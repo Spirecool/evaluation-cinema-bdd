@@ -1,9 +1,6 @@
 -- connexion au serveur MySQL
 
-mysql -u root -p 
 
--- Afficher la liste des bases de données
-SHOW databases;
 
 -- Création de la  base de données
 CREATE DATABASE  cinema_booking ;
@@ -209,3 +206,24 @@ VALUES
 ( UUID(),'2022-08-15 10:00:00', '1', '2', '2','3', '1', '1'),
 ( UUID(),'2022-08-15 10:00:00', '2', '3', '3','2', '2', '2'),
 ( UUID(),'2022-08-16 16:00:00', '2', '4', '4','2', '3', '3');
+
+
+---------
+--USERS--
+---------
+
+-- Admin --
+
+CREATE USER admin IDENTIFIED BY 'zefz65ef15ef';
+GRANT ALL PRIVILEGES on cinema_booking TO admin;
+FLUSH PRIVILEGES;
+
+--Paul (manager) 
+
+CREATE USER 'Paul' IDENTIFIED BY 're4g15re1g5e4r1g';
+GRANT DELETE on cinema_booking.projections TO Paul;
+GRANT INSERT on cinema_booking.projections TO Paul;
+GRANT UPDATE on cinema_booking.projections TO Paul;
+GRANT SELECT on cinema_booking.projections TO Paul;
+FLUSH PRIVILEGES;
+

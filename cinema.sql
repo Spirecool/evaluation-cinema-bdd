@@ -138,3 +138,8 @@ CREATE TABLE bookings
     FOREIGN KEY(id_movie) REFERENCES movies(id),
     FOREIGN KEY(id_cinema_complex) REFERENCES cinema_complex(id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+
+--------------------------------------------------------------
+--Insertions des scripts d'alimentation factices dans la BDD--
+--------------------------------------------------------------

@@ -140,6 +140,72 @@ CREATE TABLE bookings
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
+
+
 --------------------------------------------------------------
 --Insertions des scripts d'alimentation factices dans la BDD--
 --------------------------------------------------------------
+
+
+INSERT INTO administrator(user_login, email, password) 
+VALUES ('1z5zeaf5', 'jerome@mail.com', '$2y$10$Ww2Q95rjnDGNC56ZVJQKdOwoRJgCf7J1AOGKSUT7rQUziuFb1p2AC');
+
+INSERT INTO managers (user_login, email, password, first_name, last_name) 
+VALUES 
+('ze4ez5', 'paul@mail.com', '$2y$10$OGU4lK44wksDARlCQsEOD.FibZrlbIpwmDviBIlQiOxqUdn5OXGci', 'Paul', 'Durant'),
+('5zg5z1', 'pierre@mail.com', '$2y$10$1s8Vjc9taJZu2POwKql2xeHmVpvXMvYISxUs/fD2Jq0skJ/EY7rHq', 'Pierre', 'Dupont'),
+('gh787r', 'maurice@mail.com', '$2y$10$OGU4lK44wksDARlCQsEOD.FibZrlbIpwmDviBIlQiOxqUdn5OXGci', 'Maurice', 'Martin');
+
+INSERT INTO cinema_complex (cinema_name, cinema_phone, cinema_address, cinema_zipcode, cinema_city, number_of_rooms, id_administrator, id_managers )  
+VALUES 
+( 'Grand Rex', '0238565854', '12, rue de la République', '45000', 'Orléans', '7', '1', '1' ),
+( 'Moyen Rex', '0254125654', '1, place de la Mairie', '41000', 'Blois', '7', '1', '2' ),
+( 'Ptit Rex', '0227852654', '22, rue de la Loire', '37000', 'Tours', '7', '1', '3' );
+
+INSERT INTO movierooms (number_of_seats, id_complex)
+VALUES 
+('452', '1'), ('214', '1'), ('236', '1'), ('214', '2'), ('178', '2'), ('90', '3');
+
+
+INSERT INTO movies (movie_title, movie_duration, directed_by) 
+VALUES 
+('Dune', '02:35:00', 'Denis Villeneuve'),
+('Annette', '02:20:00', 'Leos Carax'),
+('The Father', '01:38:00', 'Florian Zeller'),
+('Le Dernier Duel', '02:32:00', 'Ridley Scott'),
+('Titane', '01:48:00', 'Julia Ducourneau'),
+('Last Night in Soho', '01:56:00', 'Edgar Wright');
+
+INSERT INTO projections (projection_start, id_movie_room, id_manager, id_movie) 
+VALUES
+('2022-07-10 10:00:00', '2', '1', '2'),
+('2022-07-10 10:00:00', '3', '1', '3'),
+('2022-07-10 10:00:00', '4', '1', '4'),
+('2022-07-10 10:00:00', '5', '1', '5'),
+('2022-07-10 10:00:00', '6', '2', '1');
+
+INSERT INTO prices_list(prices_description, prices) 
+VALUES
+('Plein Tarif', '9.20'),
+('Étudiant', '7.60'),
+('Moins de 14 ans', '5.90');
+
+INSERT INTO clients (user_login, email, password, first_name, last_name, date_of_birth, id_prices_list) 
+VALUES
+( 'adupont', 'arthur.dupont@aol.com', '$2y$10$o3sIDPMYZ89uyQFOegRUxuce49v2EcLHf6z./OXFB4cg10h.fHZc6', 'Arthur', 'Martin', '1995-07-30', '1'),
+( 'mpivert', 'momodu45@orange.fr', '$2y$10$RkKTjJ2iqS9nLjzemUl/qu89MIQ7MMsRizzxcR3hvwEbTc/7AvDqq', 'Maurice', 'Pivert', '1955-02-17', '1'),
+( 'kfillio', 'katia.fifi@hotmail.com', '$2y$10$WakiGrUNZr/CA4LVZpus0e6Ejc3XR27Xp7wAY1aWWfg8p152FMzZ6', 'Katia', 'Fillio', '2001-10-06', '2'),
+( 'mdialo', 'momodi@gmail.com', '$2y$10$KJpG.9kiYyNc2RzObqlTwu/UUjTT2Jyjw7y2Vap03nUF2KVJ7FWZq', 'Mamadou', 'Dialo', '1999-01-03', '3'),
+( 'dlachaise', 'dylan.lachaise@hotmail.com', '$2y$10$/1kcML9ur4cOlwqpgshjauaG3d0pFWZtXFYdp7nbTneGnWRe6F0wG', 'Dylan', 'Lachaise', '2010-08-12','3'),
+( 'nvebra', 'nina06@gmail.com', '$2y$10$zhXTDrE.pcXYuQOlLxPe0eFEzokDPnXOoeRcOlqWdkdRpV3GfrU76', 'Nina', 'Vebra', '2014-11-06','3');
+
+INSERT INTO payments(type_payment) 
+VALUES ('Sur place'), ('En ligne');
+
+
+INSERT INTO bookings(id, date_booking, id_payment, id_projection, id_client, id_movie_room, id_movie, id_cinema_complex)
+VALUES 
+( UUID(),'2022-08-14 10:00:00', '1', '1', '1','4', '1', '1'),
+( UUID(),'2022-08-15 10:00:00', '1', '2', '2','3', '1', '1'),
+( UUID(),'2022-08-15 10:00:00', '2', '3', '3','2', '2', '2'),
+( UUID(),'2022-08-16 16:00:00', '2', '4', '4','2', '3', '3');
